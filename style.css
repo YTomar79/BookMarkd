@@ -1,0 +1,190 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #4CAF50;
+    color: white;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.user-profile a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: #e2e8f0;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.cta-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.cta-button:hover {
+    background-color: #45a049;
+}
+
+/* Features Section */
+.features {
+    padding: 2rem;
+    background-color: white;
+}
+
+.features h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.feature-item {
+    margin-bottom: 1rem;
+}
+
+.feature-item h3 {
+    font-size: 1.5rem;
+    color: #4CAF50;
+}
+
+.feature-item p {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+}
+
+/* Subscription Section */
+.subscription {
+    padding: 2rem;
+    background-color: #e2e8f0;
+}
+
+.subscription h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.plan {
+    margin-bottom: 1rem;
+}
+
+.plan h3 {
+    font-size: 1.5rem;
+    color: #4CAF50;
+}
+
+.plan p {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+}
+
+/* Reward System Section */
+.reward-system {
+    padding: 2rem;
+    background-color: white;
+}
+
+.reward-system h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.reward-system p {
+    font-size: 1rem;
+}
+
+/* Reading Journal Section */
+.reading-journal {
+    padding: 2rem;
+    background-color: #e2e8f0;
+}
+
+.reading-journal h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.reading-journal p {
+    font-size: 1rem;
+}
+
+/* Ads and Merchandise Section */
+.ads-merch {
+    padding: 2rem;
+    background-color: white;
+}
+
+.ads-merch h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.ads-merch p {
+    font-size: 1rem;
+}
+
+/* Footer */
+footer {
+    padding: 1rem 2rem;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+}
+
+.footer-links {
+    margin-top: 1rem;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 1rem;
+}
