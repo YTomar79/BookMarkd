@@ -238,3 +238,22 @@ footer {
 .footer-links a:hover {
     color: #feb47b;
 }
+
+/* Content Section */
+.content {
+    padding: 4rem 2rem;
+    background-color: white;
+}
+
+.content h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.content p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
