@@ -6,7 +6,7 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     line-height: 1.6;
     background-color: #f9f9f9;
     color: #333;
@@ -23,8 +23,8 @@ header {
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
+    font-size: 1.8rem;
+    font-weight: 600;
 }
 
 nav ul {
@@ -39,27 +39,31 @@ nav ul li {
 nav ul li a {
     color: white;
     text-decoration: none;
+    font-weight: 600;
 }
 
 .user-profile a {
     color: white;
     text-decoration: none;
+    font-weight: 600;
 }
 
 /* Hero Section */
 .hero {
     text-align: center;
-    padding: 4rem 2rem;
-    background: #e2e8f0;
+    padding: 6rem 2rem;
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
+    color: white;
 }
 
 .hero h1 {
-    font-size: 2.5rem;
+    font-size: 3rem;
     margin-bottom: 1rem;
+    font-weight: 600;
 }
 
 .hero p {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     margin-bottom: 2rem;
 }
 
@@ -70,6 +74,7 @@ nav ul li a {
     text-decoration: none;
     border-radius: 5px;
     font-size: 1rem;
+    transition: background-color 0.3s;
 }
 
 .cta-button:hover {
@@ -78,22 +83,37 @@ nav ul li a {
 
 /* Features Section */
 .features {
-    padding: 2rem;
+    padding: 4rem 2rem;
     background-color: white;
 }
 
 .features h2 {
     text-align: center;
     margin-bottom: 2rem;
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+.features-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 .feature-item {
-    margin-bottom: 1rem;
+    flex: 1 1 30%;
+    background: #f1f1f1;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 8px;
+    text-align: center;
 }
 
 .feature-item h3 {
     font-size: 1.5rem;
     color: #4CAF50;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
 }
 
 .feature-item p {
@@ -103,22 +123,37 @@ nav ul li a {
 
 /* Subscription Section */
 .subscription {
-    padding: 2rem;
+    padding: 4rem 2rem;
     background-color: #e2e8f0;
 }
 
 .subscription h2 {
     text-align: center;
     margin-bottom: 2rem;
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+.plans-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .plan {
-    margin-bottom: 1rem;
+    flex: 1 1 45%;
+    background: #f1f1f1;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 8px;
+    text-align: center;
 }
 
 .plan h3 {
     font-size: 1.5rem;
     color: #4CAF50;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
 }
 
 .plan p {
@@ -128,52 +163,61 @@ nav ul li a {
 
 /* Reward System Section */
 .reward-system {
-    padding: 2rem;
+    padding: 4rem 2rem;
     background-color: white;
 }
 
 .reward-system h2 {
     text-align: center;
     margin-bottom: 2rem;
+    font-size: 2.5rem;
+    font-weight: 600;
 }
 
 .reward-system p {
     font-size: 1rem;
+    text-align: center;
 }
 
 /* Reading Journal Section */
 .reading-journal {
-    padding: 2rem;
+    padding: 4rem 2rem;
     background-color: #e2e8f0;
 }
 
 .reading-journal h2 {
     text-align: center;
     margin-bottom: 2rem;
+    font-size: 2.5rem;
+    font-weight: 600;
 }
 
 .reading-journal p {
     font-size: 1rem;
+    text-align: center;
 }
 
 /* Ads and Merchandise Section */
 .ads-merch {
-    padding: 2rem;
+    padding: 4rem 2rem;
     background-color: white;
 }
 
 .ads-merch h2 {
     text-align: center;
     margin-bottom: 2rem;
+    font-size: 2.5rem;
+    font-weight: 600;
 }
 
 .ads-merch p {
     font-size: 1rem;
+    text-align: center;
 }
 
 /* Footer */
 footer {
-    padding: 1rem 2rem;
+    padding: 2rem 2rem;
     background-color: #4CAF50;
     color: white;
     text-align: center;
@@ -187,4 +231,10 @@ footer {
     color: white;
     text-decoration: none;
     margin: 0 1rem;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: #feb47b;
 }
