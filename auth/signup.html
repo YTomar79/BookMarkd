@@ -25,10 +25,30 @@
                 </div>
                 <button type="submit" class="cta-button">Sign Up</button>
             </form>
+            <div id="google-signin-button">
+                Sign up with Google
+            </div>
             <div class="alternative">
                 <p>Already have an account? <a href="auth.html">Login</a></p>
             </div>
         </div>
     </div>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script>
+        function handleCredentialResponse(response) {
+            console.log("Encoded JWT ID token: " + response.credential);
+            // Add your own response handling here
+        }
+        window.onload = function () {
+            google.accounts.id.initialize({
+                client_id: 'YOUR_CLIENT_ID',
+                callback: handleCredentialResponse
+            });
+            google.accounts.id.renderButton(
+                document.getElementById('google-signin-button'),
+                { theme: 'outline', size: 'large' }  // customization attributes
+            );
+        }
+    </script>
 </body>
 </html>
