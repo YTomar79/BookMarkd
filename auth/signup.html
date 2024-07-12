@@ -5,26 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="auth-container">
         <div class="auth-form">
             <h2>Sign Up</h2>
-            <form id="signupForm">
-                <div class="form-group">
-                    <label for="signupEmail">Email:</label>
-                    <input type="email" id="signupEmail" required>
-                </div>
-                <div class="form-group">
-                    <label for="signupPassword">Password:</label>
-                    <input type="password" id="signupPassword" required>
-                </div>
-                <div class="form-group">
-                    <label for="confirmPassword">Confirm Password:</label>
-                    <input type="password" id="confirmPassword" required>
-                </div>
-                <button type="submit" class="cta-button">Sign Up</button>
-            </form>
+           <form id="signupForm">
+               <div class="form-group">
+                   <label for="signupEmail">Email:</label>
+                   <input type="email" id="signupEmail" required>
+               </div>
+               <div class="form-group">
+                   <label for="signupPassword">Password:</label>
+                   <input type="password" id="signupPassword" required>
+               </div>
+               <div class="form-group">
+                   <label for="confirmPassword">Confirm Password:</label>
+                   <input type="password" id="confirmPassword" required>
+               </div>
+               <button type="submit" class="cta-button">Sign Up</button>
+           </form>
+
             <div id="google-signin-button">
                 Sign up with Google
             </div>
@@ -48,6 +50,7 @@
                 document.getElementById('google-signin-button'),
                 { theme: 'outline', size: 'large' }  // customization attributes
             );
+            google.accounts.id.prompt(); // optional: automatically prompts the One Tap dialog
         }
     </script>
 </body>
