@@ -4,11 +4,17 @@ document.addEventListener('DOMContentLoaded', function () {
         return localStorage.getItem('userSignedIn') === 'true';
     }
 
-    // Function to handle logout
+    // Add this in main.js
+    function login() {
+        localStorage.setItem('userSignedIn', 'true');
+        window.location.reload();
+    }
+
     function logout() {
         localStorage.removeItem('userSignedIn');
         window.location.reload();
     }
+
 
     // Check if the user is signed in
     if (isUserSignedIn()) {
