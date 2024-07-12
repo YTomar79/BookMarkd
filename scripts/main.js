@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function renderReviews(containerId, limit) {
         const container = document.getElementById(containerId);
+        container.innerHTML = ''; // Clear the container first
         const reviewsToRender = limit ? reviews.slice(0, limit) : reviews;
 
         reviewsToRender.forEach(review => {
@@ -23,5 +24,27 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (document.getElementById('reviews-preview-container')) {
         renderReviews('reviews-preview-container', 2);
+    }
+
+    // Handle form submission
+    const reviewForm = document.getElementById('reviewForm');
+    if (reviewForm) {
+        reviewForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const bookId = document.getElementById('bookId').value;
+            const reviewText = document.getElementById('reviewText').value;
+
+            if (bookId && reviewText) {
+                // Add the new review to the reviews array
+                reviews.unshift({ user: `User ${bookId}`, review: reviewText });
+
+                // Re-render the reviews
+                renderReviews('reviewsContainer');
+                renderReviews('reviews-preview-container', 2);
+
+                // Clear the form
+                reviewForm.reset();
+            }
+        });
     }
 });
