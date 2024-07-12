@@ -3,28 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Login/Sign Up</title>
+    <title>Login / Signup - BookCommunity</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
     <div class="auth-container">
         <div class="auth-form">
             <h2>Login</h2>
-            <form action="/login" method="POST">
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-                <button type="submit" class="cta-button">Login</button>
-            </form>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" required>
+            </div>
+            <button class="cta-button" onclick="login()">Login</button>
+            <div class="google-signin" id="g_id_onload"
+                data-client_id="YOUR_GOOGLE_CLIENT_ID"
+                data-login_uri="YOUR_LOGIN_URI"
+                data-auto_prompt="false">
+            </div>
+            <div class="g_id_signin"
+                data-type="standard"
+                data-shape="rectangular"
+                data-theme="outline"
+                data-text="sign_in_with"
+                data-size="large"
+                data-logo_alignment="left">
+            </div>
             <div class="alternative">
-                <p>Don't have an account? <a href="/signup">Sign up here</a></p>
+                <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
             </div>
         </div>
     </div>
+    <script src="../scripts/auth.js"></script>
 </body>
 </html>
