@@ -376,3 +376,24 @@ footer {
 .auth-form .alternative a:hover {
     text-decoration: underline;
 }
+
+#reviews-section, .reviews {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    margin: 20px 0;
+}
+
+#reviews-container, #reviews-preview-container, .reviews-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.review-item {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.review-item:last-child {
+    border-bottom: none;
+}
