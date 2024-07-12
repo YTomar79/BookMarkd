@@ -34,6 +34,19 @@ document.addEventListener('DOMContentLoaded', function () {
         reviewFormSection.style.display = 'block';
     }
 
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Handle login form submission
+        alert('Login form submitted');
+    });
+
+    document.getElementById('signupForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Handle sign up form submission
+        alert('Sign up form submitted');
+    });
+
+
     // Handle form submission
     const reviewForm = document.getElementById('reviewForm');
     if (reviewForm) {
@@ -55,4 +68,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+
+    
 });
