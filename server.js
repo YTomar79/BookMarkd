@@ -1,63 +1,58 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const mysql = require('mysql');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const mongoose = require('mongoose');
+
 const app = express();
+const PORT = process.env.PORT || 3000;
+const SECRET_KEY = 'your-secret-key'; // Replace with a strong secret key
 
-// Middleware to parse JSON data
+// Connect to MongoDB
+mongoose.connect('mongodb://localhost:27017/book-community', { useNewUrlParser: true, useUnifiedTopology: true });
+
+// Define the User model
+const UserSchema = new mongoose.Schema({
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true }
+});
+
+const User = mongoose.model('User', UserSchema);
+
 app.use(bodyParser.json());
-// Serve static files from the public directory
-app.use(express.static('public'));
 
-// Database connection
-const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'password',
-    database: 'reviews_db'
-});
-
-db.connect(err => {
-    if (err) {
-        console.error('MySQL connection error:', err);
-        return;
+app.post('/signup', async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        const hashedPassword = bcrypt.hashSync(password, 8);
+        const user = new User({ email, password: hashedPassword });
+        await user.save();
+        res.status(201).send({ message: 'User registered successfully!' });
+    } catch (error) {
+        res.status(400).send({ message: 'Error registering user', error });
     }
-    console.log('MySQL connected...');
 });
 
-// Endpoint to fetch reviews
-app.get('/reviews', (req, res) => {
-    const sql = `
-        SELECT reviews.id, users.username, books.title, reviews.review 
-        FROM reviews 
-        JOIN users ON reviews.user_id = users.id 
-        JOIN books ON reviews.book_id = books.id 
-        ORDER BY reviews.created_at DESC
-    `;
-    db.query(sql, (err, results) => {
-        if (err) {
-            console.error('Error fetching reviews:', err);
-            res.status(500).json({ error: 'Failed to fetch reviews' });
-            return;
+app.post('/login', async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(404).send({ message: 'User not found' });
         }
-        res.json(results);
-    });
-});
 
-// Endpoint to add a review
-app.post('/reviews', (req, res) => {
-    const { user_id, book_id, review } = req.body;
-    const sql = 'INSERT INTO reviews (user_id, book_id, review) VALUES (?, ?, ?)';
-    db.query(sql, [user_id, book_id, review], (err, result) => {
-        if (err) {
-            console.error('Error adding review:', err);
-            res.status(500).json({ error: 'Failed to add review' });
-            return;
+        const passwordIsValid = bcrypt.compareSync(password, user.password);
+        if (!passwordIsValid) {
+            return res.status(401).send({ message: 'Invalid password' });
         }
-        res.json({ id: result.insertId, user_id, book_id, review });
-    });
+
+        const token = jwt.sign({ email: user.email }, SECRET_KEY, { expiresIn: 86400 });
+        res.status(200).send({ token });
+    } catch (error) {
+        res.status(400).send({ message: 'Error logging in', error });
+    }
 });
 
-// Start the server
-app.listen(3000, () => {
-    console.log('Server started on port 3000');
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
