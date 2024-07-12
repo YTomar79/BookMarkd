@@ -1,4 +1,31 @@
 document.addEventListener('DOMContentLoaded', function () {
+    function isUserSignedIn() {
+        // Replace this with real authentication check logic
+        return localStorage.getItem('userSignedIn') === 'true';
+    }
+
+    // Function to handle logout
+    function logout() {
+        localStorage.removeItem('userSignedIn');
+        window.location.reload();
+    }
+
+    // Check if the user is signed in
+    if (isUserSignedIn()) {
+        document.getElementById('dashboard').style.display = 'block';
+        document.getElementById('homepage').style.display = 'none';
+        document.getElementById('auth-links').style.display = 'none';
+        document.getElementById('dashboard-link').style.display = 'flex';
+    } else {
+        document.getElementById('dashboard').style.display = 'none';
+        document.getElementById('homepage').style.display = 'block';
+        document.getElementById('auth-links').style.display = 'flex';
+        document.getElementById('dashboard-link').style.display = 'none';
+    }
+
+    // Set up the logout button
+    document.getElementById('logout').addEventListener('click', logout);
+    
     const reviews = [
         { user: 'John Doe', review: 'Great app! Really helps me organize my bookmarks.' },
         { user: 'Jane Smith', review: 'Very useful tool, easy to use.' },
