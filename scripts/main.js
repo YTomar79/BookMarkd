@@ -1,8 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Check if user is signed in
     function isUserSignedIn() {
         return localStorage.getItem('token') !== null;
     }
 
+    // Handle login
     function login() {
         const email = document.getElementById('loginEmail').value;
         const password = document.getElementById('loginPassword').value;
@@ -25,7 +27,9 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Handle signup
     function signup() {
+        const username = document.getElementById('signupUsername').value;
         const email = document.getElementById('signupEmail').value;
         const password = document.getElementById('signupPassword').value;
 
@@ -34,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ email, password })
+            body: JSON.stringify({ username, email, password })
         })
         .then(response => response.json())
         .then(data => {
@@ -45,11 +49,13 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Handle logout
     function logout() {
         localStorage.removeItem('token');
         window.location.reload();
     }
 
+    // Update UI based on sign-in status
     if (isUserSignedIn()) {
         document.getElementById('dashboard').style.display = 'block';
         document.getElementById('homepage').style.display = 'none';
@@ -62,6 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('dashboard-link').style.display = 'none';
     }
 
+    // Event listeners for forms
     document.getElementById('logout').addEventListener('click', logout);
 
     const loginForm = document.getElementById('loginForm');
@@ -80,38 +87,37 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    const reviews = [
-        { user: 'John Doe', review: 'Great app! Really helps me organize my bookmarks.' },
-        { user: 'Jane Smith', review: 'Very useful tool, easy to use.' },
-        { user: 'Sam Wilson', review: 'I love the features and the UI is fantastic.' },
-    ];
+    // Fetch and render reviews
+    async function fetchReviews() {
+        const response = await fetch('/api/reviews');
+        const reviews = await response.json();
+        renderReviews(reviews);
+    }
 
-    function renderReviews(containerId, limit) {
-        const container = document.getElementById(containerId);
-        container.innerHTML = ''; // Clear the container first
-        const reviewsToRender = limit ? reviews.slice(0, limit) : reviews;
-
-        reviewsToRender.forEach(review => {
+    function renderReviews(reviews) {
+        const container = document.getElementById('reviewsContainer');
+        container.innerHTML = '';
+        reviews.forEach(review => {
             const reviewItem = document.createElement('div');
             reviewItem.classList.add('review-item');
-            reviewItem.innerHTML = `<strong>${review.user}</strong><p>${review.review}</p>`;
+            reviewItem.innerHTML = `
+                <img src="${review.bookIcon}" alt="Book Icon">
+                <strong>${review.user.username}</strong>
+                <p>${review.review}</p>
+            `;
             container.appendChild(reviewItem);
         });
     }
 
-    if (document.getElementById('reviewsContainer')) {
-        renderReviews('reviewsContainer');
-    }
+    fetchReviews();
 
-    if (document.getElementById('reviews-preview-container')) {
-        renderReviews('reviews-preview-container', 2);
-    }
-
+    // Display review form if user is signed in
     const reviewFormSection = document.getElementById('reviewFormSection');
     if (isUserSignedIn() && reviewFormSection) {
         reviewFormSection.style.display = 'block';
     }
 
+    // Handle review form submission
     const reviewForm = document.getElementById('reviewForm');
     if (reviewForm) {
         reviewForm.addEventListener('submit', function (event) {
@@ -120,10 +126,23 @@ document.addEventListener('DOMContentLoaded', function () {
             const reviewText = document.getElementById('reviewText').value;
 
             if (bookId && reviewText) {
-                reviews.unshift({ user: `User ${bookId}`, review: reviewText });
-                renderReviews('reviewsContainer');
-                renderReviews('reviews-preview-container', 2);
-                reviewForm.reset();
+                fetch('/api/reviews', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                    body: JSON.stringify({ bookId, reviewText })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message === 'Review added successfully!') {
+                        fetchReviews();
+                        reviewForm.reset();
+                    } else {
+                        alert(data.message);
+                    }
+                });
             }
         });
     }
