@@ -39,3 +39,13 @@ const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
+
+// Endpoint to get all reviews
+app.get('/get-reviews', (req, res) => {
+    const reviewsQuery = 'SELECT * FROM reviews ORDER BY id DESC';
+    db.query(reviewsQuery, (err, results) => {
+        if (err) throw err;
+        res.json(results);
+    });
+});
+
