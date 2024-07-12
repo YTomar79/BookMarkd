@@ -91,47 +91,40 @@ nav ul li a {
     text-align: center;
     margin-bottom: 2rem;
     font-size: 2.5rem;
-    font-weight: 600;
 }
 
 .features-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
 }
 
 .feature-item {
-    flex: 1 1 30%;
-    background: #f1f1f1;
-    padding: 1rem;
-    margin: 1rem;
-    border-radius: 8px;
+    background-color: #f1f1f1;
+    padding: 1.5rem;
+    border-radius: 5px;
     text-align: center;
 }
 
 .feature-item h3 {
+    margin-bottom: 1rem;
     font-size: 1.5rem;
-    color: #4CAF50;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
 }
 
 .feature-item p {
     font-size: 1rem;
-    margin-top: 0.5rem;
 }
 
-/* Subscription Section */
+/* Subscription Plans */
 .subscription {
     padding: 4rem 2rem;
-    background-color: #e2e8f0;
+    background-color: #f9f9f9;
 }
 
 .subscription h2 {
     text-align: center;
     margin-bottom: 2rem;
     font-size: 2.5rem;
-    font-weight: 600;
 }
 
 .plans-container {
@@ -141,89 +134,53 @@ nav ul li a {
 }
 
 .plan {
-    flex: 1 1 45%;
-    background: #f1f1f1;
-    padding: 1rem;
-    margin: 1rem;
-    border-radius: 8px;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
+    margin: 1rem;
+    flex: 1 1 300px;
 }
 
 .plan h3 {
-    font-size: 1.5rem;
-    color: #4CAF50;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
 }
 
 .plan p {
     font-size: 1rem;
-    margin-top: 0.5rem;
 }
 
-/* Reward System Section */
-.reward-system {
+/* Reward System, Reading Journal, Ads and Merch */
+.reward-system, .reading-journal, .ads-merch {
     padding: 4rem 2rem;
     background-color: white;
+    text-align: center;
 }
 
-.reward-system h2 {
-    text-align: center;
-    margin-bottom: 2rem;
+.reward-system h2, .reading-journal h2, .ads-merch h2 {
+    margin-bottom: 1rem;
     font-size: 2.5rem;
-    font-weight: 600;
 }
 
-.reward-system p {
+.reward-system p, .reading-journal p, .ads-merch p {
     font-size: 1rem;
-    text-align: center;
-}
-
-/* Reading Journal Section */
-.reading-journal {
-    padding: 4rem 2rem;
-    background-color: #e2e8f0;
-}
-
-.reading-journal h2 {
-    text-align: center;
-    margin-bottom: 2rem;
-    font-size: 2.5rem;
-    font-weight: 600;
-}
-
-.reading-journal p {
-    font-size: 1rem;
-    text-align: center;
-}
-
-/* Ads and Merchandise Section */
-.ads-merch {
-    padding: 4rem 2rem;
-    background-color: white;
-}
-
-.ads-merch h2 {
-    text-align: center;
-    margin-bottom: 2rem;
-    font-size: 2.5rem;
-    font-weight: 600;
-}
-
-.ads-merch p {
-    font-size: 1rem;
-    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 /* Footer */
 footer {
-    padding: 2rem 2rem;
-    background-color: #4CAF50;
+    background-color: #333;
     color: white;
+    padding: 1rem 2rem;
     text-align: center;
 }
 
 .footer-links {
+    display: flex;
+    justify-content: center;
     margin-top: 1rem;
 }
 
@@ -231,29 +188,4 @@ footer {
     color: white;
     text-decoration: none;
     margin: 0 1rem;
-    font-weight: 600;
-    transition: color 0.3s;
-}
-
-.footer-links a:hover {
-    color: #feb47b;
-}
-
-/* Content Section */
-.content {
-    padding: 4rem 2rem;
-    background-color: white;
-}
-
-.content h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-    font-size: 2rem;
-    font-weight: 600;
-}
-
-.content p {
-    font-size: 1.2rem;
-    margin-bottom: 1.5rem;
-    text-align: center;
 }
