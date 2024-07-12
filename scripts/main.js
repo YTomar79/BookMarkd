@@ -26,6 +26,14 @@ document.addEventListener('DOMContentLoaded', function () {
         renderReviews('reviews-preview-container', 2);
     }
 
+    // Check if user is logged in
+    const isLoggedIn = false; // Replace this with actual login check logic
+
+    const reviewFormSection = document.getElementById('reviewFormSection');
+    if (isLoggedIn && reviewFormSection) {
+        reviewFormSection.style.display = 'block';
+    }
+
     // Handle form submission
     const reviewForm = document.getElementById('reviewForm');
     if (reviewForm) {
