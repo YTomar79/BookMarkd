@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login or Sign Up - BookCommunity</title>
+    <title>Login / Sign Up</title>
     <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
@@ -14,34 +14,48 @@
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="../features.html">Features</a></li>
                 <li><a href="#">Communities</a></li>
-                <li><a href="#">Subscriptions</a></li>
+                <li><a href="../subscriptions.html">Subscriptions</a></li>
                 <li><a href="../about-us.html">About Us</a></li>
                 <li><a href="#">Contact</a></li>
             </ul>
         </nav>
-        <div class="user-profile">
-            <a href="auth.html">Login</a> | <a href="auth.html">Sign Up</a>
-        </div>
     </header>
     <main>
-        <section class="auth-form">
-            <h1>Login</h1>
-            <form id="login-form">
-                <input type="email" id="login-email" placeholder="Email" required>
-                <input type="password" id="login-password" placeholder="Password" required>
-                <button type="submit">Login</button>
-            </form>
-            <p>Don't have an account? <a href="#" id="show-signup">Sign Up</a></p>
-        </section>
-        <section class="auth-form" style="display:none;">
-            <h1>Sign Up</h1>
-            <form id="signup-form">
-                <input type="text" id="signup-name" placeholder="Full Name" required>
-                <input type="email" id="signup-email" placeholder="Email" required>
-                <input type="password" id="signup-password" placeholder="Password" required>
-                <button type="submit">Sign Up</button>
-            </form>
-            <p>Already have an account? <a href="#" id="show-login">Login</a></p>
+        <section class="auth-section">
+            <div class="auth-container">
+                <div class="login">
+                    <h2>Login</h2>
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="loginEmail">Email:</label>
+                            <input type="email" id="loginEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Password:</label>
+                            <input type="password" id="loginPassword" required>
+                        </div>
+                        <button type="submit">Login</button>
+                    </form>
+                </div>
+                <div class="signup">
+                    <h2>Sign Up</h2>
+                    <form id="signupForm">
+                        <div class="form-group">
+                            <label for="signupEmail">Email:</label>
+                            <input type="email" id="signupEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupPassword">Password:</label>
+                            <input type="password" id="signupPassword" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupUsername">Username:</label>
+                            <input type="text" id="signupUsername" required>
+                        </div>
+                        <button type="submit">Sign Up</button>
+                    </form>
+                </div>
+            </div>
         </section>
     </main>
     <footer>
@@ -52,6 +66,6 @@
             <a href="#">Contact Information</a>
         </div>
     </footer>
-    <script src="auth.js"></script>
+    <script src="../scripts/auth.js"></script>
 </body>
 </html>
