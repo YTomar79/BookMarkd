@@ -537,6 +537,32 @@ footer {
     border-bottom: none;
 }
 
+/* styles.css */
+
+.review {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.review p {
+    margin: 5px 0;
+}
+
+.vote-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.vote-buttons button {
+    margin-right: 5px;
+}
+
+.vote-buttons .score {
+    font-weight: bold;
+}
+
+
 
 
 
