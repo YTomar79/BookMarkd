@@ -1,47 +1,26 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const loginForm = document.getElementById('loginForm');
-    const signupForm = document.getElementById('signupForm');
+// scripts/auth.js
+function login() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
 
-    loginForm.addEventListener('submit', async (event) => {
-        event.preventDefault();
+    // Perform login logic here (e.g., send request to server)
+    console.log(`Logging in with ${email} and ${password}`);
+}
 
-        const email = document.getElementById('loginEmail').value;
-        const password = document.getElementById('loginPassword').value;
+// Handle the Google sign-in response
+function handleCredentialResponse(response) {
+    console.log("Encoded JWT ID token: " + response.credential);
+    // Perform your login logic here (e.g., send token to server)
+}
 
-        const response = await fetch('/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ email, password })
-        });
-
-        if (response.ok) {
-            window.location.href = '../index.html';
-        } else {
-            alert('Login failed. Please check your credentials.');
-        }
+window.onload = function () {
+    google.accounts.id.initialize({
+        client_id: 'YOUR_GOOGLE_CLIENT_ID',
+        callback: handleCredentialResponse
     });
-
-    signupForm.addEventListener('submit', async (event) => {
-        event.preventDefault();
-
-        const email = document.getElementById('signupEmail').value;
-        const password = document.getElementById('signupPassword').value;
-        const username = document.getElementById('signupUsername').value;
-
-        const response = await fetch('/signup', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ email, password, username })
-        });
-
-        if (response.ok) {
-            window.location.href = '../index.html';
-        } else {
-            alert('Sign up failed. Please try again.');
-        }
-    });
-});
+    google.accounts.id.renderButton(
+        document.querySelector('.g_id_signin'),
+        { theme: 'outline', size: 'large' }  // customization attributes
+    );
+    google.accounts.id.prompt(); // Display the One Tap prompt
+}
