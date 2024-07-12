@@ -81,6 +81,29 @@
             <h2>Ads and Merchandise</h2>
             <p>Ads: Powered by Google AdSense. Merchandise: Exclusive products for book lovers.</p>
         </section>
+        <section class="reviews">
+            <h2>User Reviews</h2>
+            <div class="review-form">
+                <h3>Submit a Review</h3>
+                <form id="reviewForm">
+                    <div class="form-group">
+                        <label for="bookId">Book ID:</label>
+                        <input type="text" id="bookId" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reviewText">Review:</label>
+                        <textarea id="reviewText" required></textarea>
+                    </div>
+                    <button type="submit">Submit Review</button>
+                </form>
+            </div>
+            <div class="reviews-list">
+                <h3>Recent Reviews</h3>
+                <ul id="reviewsContainer">
+                    <!-- Reviews will be dynamically loaded here -->
+                </ul>
+            </div>
+        </section>
     </main>
     <footer>
         <p>&copy; 2024 BookCommunity. All rights reserved.</p>
