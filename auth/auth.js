@@ -1,19 +1,47 @@
-// auth.js
 document.addEventListener('DOMContentLoaded', () => {
-    const showSignup = document.getElementById('show-signup');
-    const showLogin = document.getElementById('show-login');
-    const loginForm = document.getElementById('login-form').parentElement;
-    const signupForm = document.getElementById('signup-form').parentElement;
+    const loginForm = document.getElementById('loginForm');
+    const signupForm = document.getElementById('signupForm');
 
-    showSignup.addEventListener('click', (e) => {
-        e.preventDefault();
-        loginForm.style.display = 'none';
-        signupForm.style.display = 'block';
+    loginForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+
+        const response = await fetch('/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, password })
+        });
+
+        if (response.ok) {
+            window.location.href = '../index.html';
+        } else {
+            alert('Login failed. Please check your credentials.');
+        }
     });
 
-    showLogin.addEventListener('click', (e) => {
-        e.preventDefault();
-        loginForm.style.display = 'block';
-        signupForm.style.display = 'none';
+    signupForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const email = document.getElementById('signupEmail').value;
+        const password = document.getElementById('signupPassword').value;
+        const username = document.getElementById('signupUsername').value;
+
+        const response = await fetch('/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, password, username })
+        });
+
+        if (response.ok) {
+            window.location.href = '../index.html';
+        } else {
+            alert('Sign up failed. Please try again.');
+        }
     });
 });
