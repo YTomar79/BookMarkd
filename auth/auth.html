@@ -3,69 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login / Sign Up</title>
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Login/Sign Up</title>
 </head>
 <body>
-    <header>
-        <div class="logo">BookCommunity</div>
-        <nav>
-            <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../features.html">Features</a></li>
-                <li><a href="#">Communities</a></li>
-                <li><a href="../subscriptions.html">Subscriptions</a></li>
-                <li><a href="../about-us.html">About Us</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <section class="auth-section">
-            <div class="auth-container">
-                <div class="login">
-                    <h2>Login</h2>
-                    <form id="loginForm">
-                        <div class="form-group">
-                            <label for="loginEmail">Email:</label>
-                            <input type="email" id="loginEmail" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="loginPassword">Password:</label>
-                            <input type="password" id="loginPassword" required>
-                        </div>
-                        <button type="submit">Login</button>
-                    </form>
+    <div class="auth-container">
+        <div class="auth-form">
+            <h2>Login</h2>
+            <form action="/login" method="POST">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
                 </div>
-                <div class="signup">
-                    <h2>Sign Up</h2>
-                    <form id="signupForm">
-                        <div class="form-group">
-                            <label for="signupEmail">Email:</label>
-                            <input type="email" id="signupEmail" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="signupPassword">Password:</label>
-                            <input type="password" id="signupPassword" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="signupUsername">Username:</label>
-                            <input type="text" id="signupUsername" required>
-                        </div>
-                        <button type="submit">Sign Up</button>
-                    </form>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
                 </div>
+                <button type="submit" class="cta-button">Login</button>
+            </form>
+            <div class="alternative">
+                <p>Don't have an account? <a href="/signup">Sign up here</a></p>
             </div>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2024 BookCommunity. All rights reserved.</p>
-        <div class="footer-links">
-            <a href="#">Terms of Service</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Contact Information</a>
         </div>
-    </footer>
-    <script src="../scripts/auth.js"></script>
+    </div>
 </body>
 </html>
