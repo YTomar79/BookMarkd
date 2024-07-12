@@ -1,22 +1,23 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Check if the user is signed in
     function isUserSignedIn() {
         // Replace this with real authentication check logic
         return localStorage.getItem('userSignedIn') === 'true';
     }
 
-    // Add this in main.js
+    // Function to handle login
     function login() {
         localStorage.setItem('userSignedIn', 'true');
         window.location.reload();
     }
 
+    // Function to handle logout
     function logout() {
         localStorage.removeItem('userSignedIn');
         window.location.reload();
     }
 
-
-    // Check if the user is signed in
+    // Toggle dashboard and homepage based on user's sign-in status
     if (isUserSignedIn()) {
         document.getElementById('dashboard').style.display = 'block';
         document.getElementById('homepage').style.display = 'none';
@@ -32,12 +33,14 @@ document.addEventListener('DOMContentLoaded', function () {
     // Set up the logout button
     document.getElementById('logout').addEventListener('click', logout);
     
+    // Sample reviews data
     const reviews = [
         { user: 'John Doe', review: 'Great app! Really helps me organize my bookmarks.' },
         { user: 'Jane Smith', review: 'Very useful tool, easy to use.' },
         { user: 'Sam Wilson', review: 'I love the features and the UI is fantastic.' },
     ];
 
+    // Function to render reviews
     function renderReviews(containerId, limit) {
         const container = document.getElementById(containerId);
         container.innerHTML = ''; // Clear the container first
@@ -51,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Render reviews if the container exists
     if (document.getElementById('reviewsContainer')) {
         renderReviews('reviewsContainer');
     }
@@ -59,28 +63,34 @@ document.addEventListener('DOMContentLoaded', function () {
         renderReviews('reviews-preview-container', 2);
     }
 
-    // Check if user is logged in
-    const isLoggedIn = false; // Replace this with actual login check logic
+    // Check if user is logged in for displaying the review form section
+    const isLoggedIn = isUserSignedIn();
 
     const reviewFormSection = document.getElementById('reviewFormSection');
     if (isLoggedIn && reviewFormSection) {
         reviewFormSection.style.display = 'block';
     }
 
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        // Handle login form submission
-        alert('Login form submitted');
-    });
+    // Handle login form submission
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            login();
+        });
+    }
 
-    document.getElementById('signupForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        // Handle sign up form submission
-        alert('Sign up form submitted');
-    });
+    // Handle sign up form submission
+    const signupForm = document.getElementById('signupForm');
+    if (signupForm) {
+        signupForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Handle sign up logic here
+            alert('Sign up form submitted');
+        });
+    }
 
-
-    // Handle form submission
+    // Handle review form submission
     const reviewForm = document.getElementById('reviewForm');
     if (reviewForm) {
         reviewForm.addEventListener('submit', function (event) {
@@ -101,6 +111,4 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
-
-    
 });
