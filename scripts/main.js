@@ -1,23 +1,55 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Check if the user is signed in
     function isUserSignedIn() {
-        // Replace this with real authentication check logic
-        return localStorage.getItem('userSignedIn') === 'true';
+        return localStorage.getItem('token') !== null;
     }
 
-    // Function to handle login
     function login() {
-        localStorage.setItem('userSignedIn', 'true');
-        window.location.reload();
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+
+        fetch('/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, password })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.token) {
+                localStorage.setItem('token', data.token);
+                window.location.reload();
+            } else {
+                alert(data.message);
+            }
+        });
     }
 
-    // Function to handle logout
+    function signup() {
+        const email = document.getElementById('signupEmail').value;
+        const password = document.getElementById('signupPassword').value;
+
+        fetch('/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, password })
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+            if (data.message === 'User registered successfully!') {
+                window.location.href = 'auth.html'; // Redirect to login page
+            }
+        });
+    }
+
     function logout() {
-        localStorage.removeItem('userSignedIn');
+        localStorage.removeItem('token');
         window.location.reload();
     }
 
-    // Toggle dashboard and homepage based on user's sign-in status
     if (isUserSignedIn()) {
         document.getElementById('dashboard').style.display = 'block';
         document.getElementById('homepage').style.display = 'none';
@@ -30,17 +62,30 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('dashboard-link').style.display = 'none';
     }
 
-    // Set up the logout button
     document.getElementById('logout').addEventListener('click', logout);
-    
-    // Sample reviews data
+
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            login();
+        });
+    }
+
+    const signupForm = document.getElementById('signupForm');
+    if (signupForm) {
+        signupForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            signup();
+        });
+    }
+
     const reviews = [
         { user: 'John Doe', review: 'Great app! Really helps me organize my bookmarks.' },
         { user: 'Jane Smith', review: 'Very useful tool, easy to use.' },
         { user: 'Sam Wilson', review: 'I love the features and the UI is fantastic.' },
     ];
 
-    // Function to render reviews
     function renderReviews(containerId, limit) {
         const container = document.getElementById(containerId);
         container.innerHTML = ''; // Clear the container first
@@ -54,7 +99,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Render reviews if the container exists
     if (document.getElementById('reviewsContainer')) {
         renderReviews('reviewsContainer');
     }
@@ -63,34 +107,11 @@ document.addEventListener('DOMContentLoaded', function () {
         renderReviews('reviews-preview-container', 2);
     }
 
-    // Check if user is logged in for displaying the review form section
-    const isLoggedIn = isUserSignedIn();
-
     const reviewFormSection = document.getElementById('reviewFormSection');
-    if (isLoggedIn && reviewFormSection) {
+    if (isUserSignedIn() && reviewFormSection) {
         reviewFormSection.style.display = 'block';
     }
 
-    // Handle login form submission
-    const loginForm = document.getElementById('loginForm');
-    if (loginForm) {
-        loginForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            login();
-        });
-    }
-
-    // Handle sign up form submission
-    const signupForm = document.getElementById('signupForm');
-    if (signupForm) {
-        signupForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Handle sign up logic here
-            alert('Sign up form submitted');
-        });
-    }
-
-    // Handle review form submission
     const reviewForm = document.getElementById('reviewForm');
     if (reviewForm) {
         reviewForm.addEventListener('submit', function (event) {
@@ -99,14 +120,9 @@ document.addEventListener('DOMContentLoaded', function () {
             const reviewText = document.getElementById('reviewText').value;
 
             if (bookId && reviewText) {
-                // Add the new review to the reviews array
                 reviews.unshift({ user: `User ${bookId}`, review: reviewText });
-
-                // Re-render the reviews
                 renderReviews('reviewsContainer');
                 renderReviews('reviews-preview-container', 2);
-
-                // Clear the form
                 reviewForm.reset();
             }
         });
